@@ -72,18 +72,19 @@ def passage2graph(passage, text=None, prefix=None):
     non_terminals = [unit for unit in l1.all if unit.tag in (layer1.NodeTags.Foundational, layer1.NodeTags.Punctuation)]
     for token in sorted(l0.all, key=attrgetter("position")):
         for unit in non_terminals:
-            if not unit.attrib.get("implicit"):
-                for edge in unit:
-                    if "Terminal" in edge.tags and token.ID == edge.child.ID:
-                        if unit.ID in unit_id_to_node_id:
-                            node = graph.find_node(unit_id_to_node_id[unit.ID]);
-                            if graph.input:
-                                node.anchors.append(anchor(token.text));
-                        else:
-                            node = graph.add_node(anchors=[anchor(token.text)] if graph.input else None);
-                            unit_id_to_node_id[unit.ID] = node.id;
+            # if not unit.attrib.get("implicit"):
+            for edge in unit:
+                if "Terminal" in edge.tags and token.ID == edge.child.ID:
+                    if unit.ID in unit_id_to_node_id:
+                        node = graph.find_node(unit_id_to_node_id[unit.ID]);
+                        if graph.input:
+                            node.anchors.append(anchor(token.text));
+                    else:
+                        node = graph.add_node(anchors = [anchor(token.text)] if graph.input else None);
+                        unit_id_to_node_id[unit.ID] = node.id;
     for unit in sorted(non_terminals, key=attrgetter("start_position", "end_position")):
-        if not unit.attrib.get("implicit") and unit.ID not in unit_id_to_node_id:
+        # if not unit.attrib.get("implicit") and unit.ID not in unit_id_to_node_id:
+        if unit.ID not in unit_id_to_node_id:
             node = graph.add_node();
             unit_id_to_node_id[unit.ID] = node.id;
     for unit in non_terminals:
@@ -98,13 +99,9 @@ def passage2graph(passage, text=None, prefix=None):
                         graph.add_edge(unit_id_to_node_id[unit.ID],
                                        unit_id_to_node_id[edge.child.ID],
                                        tag,
-                                       attributes=attributes,
-                                       values=values);
-                    else:
-                        #
-                        # quietly ignore edges to implicit nodes
-                        #
-                        pass;
+                                       attributes = attributes,
+                                       values = values);
+
     for unit in l1.heads:
         node_id = unit_id_to_node_id.get(unit.ID)
         if node_id is not None:
