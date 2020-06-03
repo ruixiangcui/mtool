@@ -170,3 +170,14 @@ def write_passage(passage, output_format=None, binary=False, outdir=".", prefix=
         with open(outfile, "a" if append else "w", encoding="utf-8") as f:
             f.writelines(map("{}\n".format, (converter or to_text)(passage)))
     return outfile
+
+
+if __name__ == "__main__":
+    '''
+    Write files directory, and out directory
+    adjust parameters
+    '''
+    ob=read_files_and_dirs(" ")
+    for me in ob:
+        write_passage(me, binary=True, outdir=" ")
+
