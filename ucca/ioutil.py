@@ -126,7 +126,6 @@ def gen_files(files_and_dirs):
         else:
             yield file_or_dir
 
-
 def read_files_and_dirs(files_and_dirs, sentences=False, paragraphs=False, converters=None, lang=DEFAULT_LANG,
                         attempts=DEFAULT_ATTEMPTS, delay=DEFAULT_DELAY):
     """
@@ -172,12 +171,12 @@ def write_passage(passage, output_format=None, binary=False, outdir=".", prefix=
     return outfile
 
 
-if __name__ == "__main__":
-    '''
-    Write files directory, and out directory
-    adjust parameters
-    '''
-    ob=read_files_and_dirs(" ")
-    for me in ob:
-        write_passage(me, binary=True, outdir=" ")
+# if __name__ == "__main__":
+#     '''
+#     Write files directory, and out directory
+#     adjust parameters
+#     '''
+#     ob=read_files_and_dirs("")
+#     for me in ob:
+#         write_passage(me, outdir="")
 
