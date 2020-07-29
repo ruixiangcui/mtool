@@ -83,7 +83,11 @@ def passage2graph(passage, text=None, prefix=None):
                         unit_id_to_node_id[unit.ID] = node.id;
     for unit in sorted(non_terminals, key=attrgetter("start_position", "end_position")):
         if unit.ID not in unit_id_to_node_id:
-            node = graph.add_node();
+            node_properties, node_values = None, None;
+            if unit.attrib.get("implicit"):
+                node_properties = ["implicit"];
+                node_values = [True];
+            node = graph.add_node(properties = node_properties, values = node_values);
             unit_id_to_node_id[unit.ID] = node.id;
     for unit in non_terminals:
         for edge in unit:
