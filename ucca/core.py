@@ -494,7 +494,7 @@ class Node:
         edge = Edge(root=self._root, parent=self,
                     child=node, attrib=edge_attrib)
         for category in edge_categories:
-            edge.add(*category)
+            edge.add(category)
         self._outgoing.append(edge)
         self._outgoing.sort(key=self._orderkey)
         node._incoming.append(edge)
