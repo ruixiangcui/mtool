@@ -46,6 +46,12 @@ class EdgeTags:
     LinkRelation = 'LR'
     LinkArgument = 'LA'
     Terminal = 'Terminal'
+    Deictic = 'Deictic'
+    Arbitrary = 'Arbitrary/Nonspecific'
+    Iterated = 'Iterated/repeated/set'
+    Generic = 'Generic'
+    GenreBased = 'Genre-based'
+    TypeIdentifiable = 'Type-identifiable'
     __init__ = None
 
 
