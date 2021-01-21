@@ -100,7 +100,7 @@ def passage2graph(passage, text=None, prefix=None):
                             values = [True];
                         graph.add_edge(unit_id_to_node_id[unit.ID],
                                        unit_id_to_node_id[edge.child.ID],
-                                       tag[0],
+                                       tag,
                                        attributes = attributes,
                                        values = values);
 
