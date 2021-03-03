@@ -708,7 +708,7 @@ class Graph(object):
                 if node.label is not None: labels.add((identity, node.label));
                 if node.properties is not None:
                     for property, value in zip(node.properties, node.values):
-                        properties.add((identity, property, value.lower()));
+                        properties.add((identity, property, value));
                 if node.anchors is not None:
                     anchor = score.core.anchor(node);
                     if graph.input:
